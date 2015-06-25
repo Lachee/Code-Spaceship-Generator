@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace CodeSpaceshipGenerator
 {
@@ -20,6 +21,11 @@ namespace CodeSpaceshipGenerator
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Add a link to the LinkLabel.
+            LinkLabel.Link link = new LinkLabel.Link();
+            link.LinkData = "https://twitter.com/Managore/status/577252673621102592";
+            linkLabel1.Links.Add(link);
+
             string path = "../../Form1.cs";
 
             int lineHeight = 10;
@@ -175,6 +181,15 @@ namespace CodeSpaceshipGenerator
             Color polyColor = Color.White;
 
             GenerateImage(textbox_path.Text, lineHeight, tabSize, bkgColor, polyColor);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(e.Link.LinkData as string);
         }
     }
 }
